@@ -12,8 +12,9 @@ GEM
       celluloid (>= 0.15.0)
       nio4r (>= 0.5.0)
     coderay (1.1.0)
-    comment_extractor (1.0.1)
+    comment_extractor (1.0.2)
       haml
+      rdoc
     diff-lcs (1.2.5)
     ffi (1.9.3)
     formatador (0.2.4)
@@ -28,6 +29,7 @@ GEM
       rspec (>= 2.14, < 4.0)
     haml (4.0.5)
       tilt
+    json (1.8.1)
     listen (2.7.1)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
@@ -45,6 +47,8 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
+    rdoc (4.1.1)
+      json (~> 1.4)
     rspec (3.0.0.beta2)
       rspec-core (= 3.0.0.beta2)
       rspec-expectations (= 3.0.0.beta2)
@@ -66,7 +70,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  comment_extractor (~> 1.0.1)
+  comment_extractor (~> 1.0.2)
   guard
   guard-rspec
   parallel

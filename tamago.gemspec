@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'rake'
   s.add_development_dependency 'parallel'
-  s.add_development_dependency 'comment_extractor', '~> 1.0.1'
+  s.add_development_dependency 'comment_extractor', '~> 1.0.2'
 end
