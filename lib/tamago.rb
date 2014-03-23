@@ -4,6 +4,8 @@ require 'tamago/configuration'
 require 'tamago/parser'
 
 module Tamago
+  autoload :File, 'tamago/file'
+
   def self.configuration
     @configuration ||= Configuration.new
   end

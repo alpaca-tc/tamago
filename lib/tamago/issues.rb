@@ -15,6 +15,7 @@ module Tamago
       tagname = tagname.to_sym
 
       issue = {
+        tagname: tagname,
         line: line,
         title: title
       }
