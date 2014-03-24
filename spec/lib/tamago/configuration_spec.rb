@@ -5,6 +5,10 @@ module Tamago
   describe Configuration do
     before do
       # Initializes class variables
+      if Tamago.instance_variable_defined?(:@configuration)
+        Tamago.remove_instance_variable(:@configuration)
+      end
+
       @required_attributes = described_class.instance_variable_set(:@required_attributes, {})
 
       described_class.instance_variable_set(:@required_attributes, {})
@@ -24,6 +28,9 @@ module Tamago
           expect(subject.default_formatter).to eql :default
           expect(subject.comment_types).to eq %w[todo review fix]
           expect(subject.ignore_patterns).to eq %w[.git *.swp]
+          expect(subject.output_file).to eql '.tamagoresults'
+          expect(subject.in_threads).to eql 5
+          expect(subject.show_type).to eql :all
           expect(subject.files).to eq %w[.]
         end
       end

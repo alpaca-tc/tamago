@@ -110,6 +110,31 @@ module Tamago
         end
       end
 
+      describe '--output' do
+        context 'with default' do
+          let(:argv) { ['--output', '.output_file'] }
+          it_should_behave_like 'a parsed option', 'output_file', '.output_file'
+        end
+
+        context 'with invalid option' do
+          let(:argv) { ['--output', 'invalid_value'] }
+          it_should_behave_like 'a missing argument', '--output'
+        end
+      end
+
+      describe '--ignore' do
+        context 'with ignore pattern' do
+          let(:argv) { ['--ignore', '.png'] }
+          it_should_behave_like 'a parsed option', 'ignore_patterns', %w[.git *.swp .png]
+        end
+
+        context 'with invalid option' do
+          let(:argv) { ['--output', 'invalid_value'] }
+          it_should_behave_like 'a missing argument', '--output'
+        end
+      end
+
+
       # tamag [OPTION] -- file_path file_path ...
       describe '-- files' do
         subject { Tamago.configuration.files }
@@ -119,7 +144,7 @@ module Tamago
         end
 
         context 'with no args' do
-          it { should eq ['./'] }
+          it { should eq ['.'] }
         end
 
         context 'with file path' do

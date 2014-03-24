@@ -25,6 +25,14 @@ module Tamago
           Tamago.configuration.formatter = formatter
         end
 
+        parser.on('--output FILE', String) do |file|
+          Tamago.configuration.output_file = file
+        end
+
+        parser.on('--ignore pattern') do |pattern|
+          Tamago.configuration.ignore_patterns << pattern
+        end
+
         parser.on_tail('-h', '--help', 'Show this usage message and quit.') do |setting|
           puts parser.help
           exit
