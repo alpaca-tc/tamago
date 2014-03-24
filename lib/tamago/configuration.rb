@@ -7,7 +7,7 @@ module Tamago
 
       @default_formatter = :default
       @comment_types = %w[todo review fix]
-      @ignore_patterns = %w[.git *.swp]
+      @ignore_patterns = %w[.git *.swp tmp]
       @formatter = Formatter::DefaultFormatter
       @show_type = :all
       @in_threads = 5

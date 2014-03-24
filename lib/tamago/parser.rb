@@ -14,7 +14,6 @@ module Tamago
     def parse(file_list)
       in_threads = Tamago.configuration.in_threads
       Parallel.each(file_list, in_threads: in_threads) do |path|
-      # file_list.each do |path|
         parse_file(path)
       end
 

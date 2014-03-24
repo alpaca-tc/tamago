@@ -10,10 +10,7 @@ module Tamago
       it { should be_a_kind_of described_class }
     end
 
-    # [todo] - file listを作る処理
-    # [todo] - OptionParserを作る処理
     # [todo] - 設定ファイルを抽象的にあつかう処理
-    # [todo] - formatterで書き出す処理
     describe '#parse' do
       let(:file_list) { ['', ''] }
 

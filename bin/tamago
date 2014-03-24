@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 
-begin
-  require 'tamago'
-rescue LoadError
-  $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-  require 'tamago'
-end
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 
+require 'tamago'
 Tamago::Core.run(ARGV)

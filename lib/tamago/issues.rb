@@ -1,5 +1,6 @@
 module Tamago
   # file information ごとに、issuesを管理する
+  # [todo] - refactoring
   class Issues < Hash
     attr_reader :length
 
@@ -32,6 +33,7 @@ module Tamago
   class Informations < Hash
     def initialize(*)
       super
+      @root_path = Dir.pwd
       @comment_types = Tamago.configuration.comment_types
     end
 
@@ -49,9 +51,11 @@ module Tamago
     end
 
     def information(path)
+      absolute_path = File.expand_path(path)
+
       self[path] ||= {
-        relative_path: path,
-        absolute_path: File.expand_path(path),
+        relative_path: absolute_path.sub(/^#{@root_path}\//, ''),
+        absolute_path: absolute_path,
         tags: @comment_types,
         issues: Issues.new(@comment_types),
       }

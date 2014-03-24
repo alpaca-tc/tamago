@@ -24,8 +24,8 @@ module Tamago
 
     def start
       message = []
-      selected_issues.each do |path, issues_object|
-        message += build_message(path, issues_object)
+      selected_issues.each do |_, issues_object|
+        message += build_message(issues_object)
       end
 
       puts message.flatten
@@ -33,12 +33,12 @@ module Tamago
 
     private
 
-    def build_message(path, issues_object)
+    def build_message(issues_object)
       issues = issues_object[:issues]
       definition = issues.has_issue? ? DEFINITION[:red] : DEFINITION[:green]
 
       message = []
-      message << definition.gsub('#PATH', path)
+      message << definition.gsub('#PATH', issues_object[:relative_path])
       message << build_issue_message(issues) if issues.has_issue?
 
       message

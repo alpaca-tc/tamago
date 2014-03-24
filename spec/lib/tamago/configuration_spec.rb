@@ -27,7 +27,7 @@ module Tamago
         it 'sets attributes to default value' do
           expect(subject.default_formatter).to eql :default
           expect(subject.comment_types).to eq %w[todo review fix]
-          expect(subject.ignore_patterns).to eq %w[.git *.swp]
+          expect(subject.ignore_patterns).to eq %w[.git *.swp tmp]
           expect(subject.output_file).to eql '.tamagoresults'
           expect(subject.in_threads).to eql 5
           expect(subject.show_type).to eql :all
