@@ -1,5 +1,7 @@
 require 'tamago/core'
+require 'tamago/option_parser'
 require 'tamago/file_list_builder'
+require 'tamago/formatter'
 require 'tamago/configuration'
 require 'tamago/parser'
 

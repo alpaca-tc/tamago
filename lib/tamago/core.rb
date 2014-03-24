@@ -1,8 +1,9 @@
 module Tamago
   module Core
     class << self
-      def run
-        # [todo] - Option parse
+      def run(argv)
+        OptionParser.new(argv).parse!
+
         # [todo] - Read configuration file
         file_list = FileListBuilder.get_file_list
         parser = Parser.new

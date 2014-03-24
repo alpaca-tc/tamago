@@ -2,6 +2,7 @@ module Tamago
   class Formatter
     autoload :DefaultFormatter, 'tamago/formatter/default_formatter'
     autoload :UniteFormatter, 'tamago/formatter/unite_formatter'
+    autoload :JsonFormatter, 'tamago/formatter/json_formatter'
 
     def initialize(informations)
       @informations = informations
