@@ -1,4 +1,5 @@
 require 'tamago/version'
+require 'optparse'
 
 module Tamago
   class OptionParser
