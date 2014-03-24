@@ -3,8 +3,11 @@ require 'tamago/file_list_builder'
 
 module Tamago
   describe FileListBuilder do
+    describe '.get_file_list' do
+    end
+
     describe '.ignore_file?' do
-      subject { described_class.ignore_file?(file) }
+      subject { described_class.send(:ignore_file?, file) }
 
       before do
         allow(described_class).to receive(:ignore_patterns) { ignore_patterns }

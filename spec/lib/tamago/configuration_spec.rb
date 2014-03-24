@@ -24,7 +24,7 @@ module Tamago
           expect(subject.default_formatter).to eql :default
           expect(subject.comment_types).to eq %w[todo review fix]
           expect(subject.ignore_patterns).to eq %w[.git *.swp]
-          expect(subject.directories).to eq %w[.]
+          expect(subject.files).to eq %w[.]
         end
       end
 

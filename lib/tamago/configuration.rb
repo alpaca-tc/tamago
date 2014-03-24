@@ -8,12 +8,11 @@ module Tamago
       @default_formatter = :default
       @comment_types = %w[todo review fix]
       @ignore_patterns = %w[.git *.swp]
-      @directories = %w[.]
       @formatter = Formatter::DefaultFormatter
       @show_type = :all
       @in_threads = 5
       @output_file = '.tamagoresults'
-      @files = ['./']
+      @files = ['.']
 
       attributes.each do |key, value|
         required_attributes.delete(key)
@@ -58,7 +57,6 @@ module Tamago
     add_setting :default_formatter
     add_setting :comment_types
     add_setting :ignore_patterns
-    add_setting :directories
     add_setting :formatter
     add_setting :show_type
     add_setting :in_threads
