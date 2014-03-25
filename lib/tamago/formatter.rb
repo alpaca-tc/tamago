@@ -4,7 +4,7 @@ module Tamago
     autoload :UniteFormatter, 'tamago/formatter/unite_formatter'
     autoload :JsonFormatter, 'tamago/formatter/json_formatter'
 
-    def initialize(informations)
+    def initialize(informations, io = nil)
       @informations = informations
     end
 
