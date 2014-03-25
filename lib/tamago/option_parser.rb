@@ -20,17 +20,21 @@ module Tamago
         end
 
         parser.on('--formatter FORMATTER', formatters) do |formatter_name|
-          name = string2camel_case("#{formatter_name}_formatter")
+          name = "#{formatter_name}_formatter".camelcase
           formatter = Formatter.const_get(name)
           Tamago.configuration.formatter = formatter
         end
 
-        parser.on('--output FILE', String) do |file|
+        parser.on('--file FILE', String) do |file|
           Tamago.configuration.output_file = file
         end
 
-        parser.on('--ignore pattern') do |pattern|
+        parser.on('--ignore PATTERN') do |pattern|
           Tamago.configuration.ignore_patterns << pattern
+        end
+
+        parser.on('--outputter OUTPUTTER', outputters) do |outputter|
+          Tamago.configuration.outputter = outputter
         end
 
         parser.on_tail('-h', '--help', 'Show this usage message and quit.') do |setting|
@@ -48,27 +52,19 @@ module Tamago
     private
 
     def formatters
-      @formatters ||= Formatter.constants.map do |v|
-        string2underscore(v.to_s).gsub('_formatter', '').to_sym
-      end
+      @formatters ||= get_constans_symbols(Formatter)
     end
 
-    def string2underscore(camel_cased_word)
-      camel_cased_word = camel_cased_word.to_s
-      camel_cased_word.gsub(/::/, '/')
-        .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
-        .gsub(/([a-z\d])([A-Z])/,'\1_\2')
-        .tr('-', '_')
-        .downcase
+    def outputters
+      @outputters ||= get_constans_symbols(IO)
     end
 
-    def string2camel_case(underscore)
-      underscore = underscore.to_s
-      if underscore !~ /_/ && underscore =~ /[A-Z]+.*/
-        return underscore
+    def get_constans_symbols(module_or_klass)
+      module_name = module_or_klass.to_s.sub(/.*::([^:]+)$/, '\1')
+      suffix = module_name.underscore
+      module_or_klass.constants.map do |v|
+        v.to_s.underscore.gsub("_#{suffix}", '').to_sym
       end
-
-      underscore.split('_').map{ |e| e.capitalize }.join
     end
   end
 end

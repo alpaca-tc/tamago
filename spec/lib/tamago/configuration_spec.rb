@@ -25,13 +25,14 @@ module Tamago
 
       context 'given valid attributes' do
         it 'sets attributes to default value' do
-          expect(subject.default_formatter).to eql :default
-          expect(subject.comment_types).to eq %w[todo review fix]
-          expect(subject.ignore_patterns).to eq %w[.git *.swp tmp]
-          expect(subject.output_file).to eql '.tamagoresults'
-          expect(subject.in_threads).to eql 5
-          expect(subject.show_type).to eql :all
-          expect(subject.files).to eq %w[.]
+          expect(subject.comment_types).to     eq %w[todo review fix]
+          expect(subject.default_formatter).to eq :default
+          expect(subject.files).to             eq %w[.]
+          expect(subject.ignore_patterns).to   eq %w[.git *.swp tmp]
+          expect(subject.in_threads).to        eq 5
+          expect(subject.output_file).to       eq '.tamagoresults'
+          expect(subject.outputter).to         eq :file
+          expect(subject.show_type).to         eq :all
         end
       end
 

@@ -6,6 +6,9 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    active_support (3.0.0)
+      activesupport (= 3.0.0)
+    activesupport (3.0.0)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     celluloid-io (0.15.0)
@@ -70,6 +73,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_support
   comment_extractor (~> 1.0.2)
   guard
   guard-rspec

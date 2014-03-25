@@ -3,6 +3,24 @@ require 'tamago/file_list_builder'
 
 module Tamago
   describe FileListBuilder do
+    before do
+      if Tamago.instance_variable_defined?(:@configuration)
+        Tamago.remove_instance_variable(:@configuration)
+      end
+
+      allow_any_instance_of(Tamago::Configuration).to receive(:ignore_patterns) { patterns }
+    end
+
+    after do
+      FileListBuilder.class_eval do |klass|
+        if klass.instance_variable_defined?(:@ignore_patterns)
+          klass.remove_instance_variable(:@ignore_patterns)
+        end
+      end
+    end
+
+    let(:patterns) { [] }
+
     describe 'Public Methods' do
       describe '.get_file_list' do
         subject { described_class.get_file_list }
@@ -65,16 +83,6 @@ module Tamago
 
       describe '.ignore_patterns' do
         subject { FileListBuilder.send(:ignore_patterns) }
-
-        before do
-          allow_any_instance_of(Tamago::Configuration).to receive(:ignore_patterns) { patterns }
-        end
-
-        after do
-          FileListBuilder.class_eval do |klass|
-            klass.remove_instance_variable(:@ignore_patterns)
-          end
-        end
 
         context 'when given dot' do
           let(:patterns) { ['.'] }

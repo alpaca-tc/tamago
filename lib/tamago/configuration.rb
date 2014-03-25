@@ -5,14 +5,15 @@ module Tamago
     def initialize(attributes = {})
       required_attributes = self.class.required_attributes.dup
 
+      @comment_types     = %w[todo review fix]
       @default_formatter = :default
-      @comment_types = %w[todo review fix]
-      @ignore_patterns = %w[.git *.swp tmp]
-      @formatter = Formatter::DefaultFormatter
-      @show_type = :all
-      @in_threads = 5
-      @output_file = '.tamagoresults'
-      @files = ['.']
+      @files             = ['.']
+      @formatter         = Formatter::DefaultFormatter
+      @ignore_patterns   = %w[.git *.swp tmp]
+      @in_threads        = 5
+      @output_file       = '.tamagoresults'
+      @outputter         = :file
+      @show_type         = :all
 
       attributes.each do |key, value|
         required_attributes.delete(key)
@@ -54,13 +55,14 @@ module Tamago
       end
     end
 
-    add_setting :default_formatter
     add_setting :comment_types
-    add_setting :ignore_patterns
+    add_setting :default_formatter
+    add_setting :files
     add_setting :formatter
-    add_setting :show_type
+    add_setting :ignore_patterns
     add_setting :in_threads
     add_setting :output_file
-    add_setting :files
+    add_setting :outputter
+    add_setting :show_type
   end
 end

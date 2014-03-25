@@ -8,7 +8,11 @@ module Tamago
 
     describe '#start' do
       subject { formatter.start }
+      it { expect { subject }.to raise_error NotImplementedError }
+    end
 
+    describe '#finish' do
+      subject { formatter.finish }
       it { expect { subject }.to raise_error NotImplementedError }
     end
 

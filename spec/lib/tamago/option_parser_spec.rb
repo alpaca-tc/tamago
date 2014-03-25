@@ -26,7 +26,13 @@ module Tamago
     shared_examples_for 'a parsed option' do |key, expected_value|
       let(:configuration) { Tamago.configuration.send(key) }
 
-      it "set configuration.#{key} to #{expected_value}" do
+      if expected_value.is_a?(Symbol)
+        to_value = ":#{expected_value}"
+      else
+        to_value = expected_value
+      end
+
+      it "set configuration.#{key} to #{to_value}" do
         subject
         expect(configuration).to eq expected_value
       end
@@ -110,22 +116,22 @@ module Tamago
         end
       end
 
-      describe '--output' do
+      describe '--file' do
         context 'with default' do
-          let(:argv) { ['--output', '.output_file'] }
+          let(:argv) { ['--file', '.output_file'] }
           it_should_behave_like 'a parsed option', 'output_file', '.output_file'
         end
 
         context 'with invalid option' do
-          let(:argv) { ['--output', 'invalid_value'] }
-          it_should_behave_like 'a missing argument', '--output'
+          let(:argv) { ['--file', 'invalid_value'] }
+          it_should_behave_like 'a missing argument', '--file'
         end
       end
 
       describe '--ignore' do
         context 'with ignore pattern' do
           let(:argv) { ['--ignore', '.png'] }
-          it_should_behave_like 'a parsed option', 'ignore_patterns', %w[.git *.swp .png]
+          it_should_behave_like 'a parsed option', 'ignore_patterns', %w[.git *.swp tmp .png]
         end
 
         context 'with invalid option' do
@@ -150,6 +156,18 @@ module Tamago
         context 'with file path' do
           let(:argv) { ['--', 'file_path', 'file_path2'] }
           it { should eq ['file_path', 'file_path2'] }
+        end
+      end
+
+      describe '--outputter' do
+        context 'with :file' do
+          let(:argv) { ['--outputter', 'file'] }
+          it_should_behave_like 'a parsed option', 'outputter', :file
+        end
+
+        context 'with invalid option' do
+          let(:argv) { ['--outputter', 'invalid_value'] }
+          it_should_behave_like 'a missing argument', '--outputter'
         end
       end
     end

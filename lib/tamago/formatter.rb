@@ -12,6 +12,10 @@ module Tamago
       raise NotImplementedError
     end
 
+    def finish
+      raise NotImplementedError
+    end
+
     def selected_issues(show_type = nil)
       show_type ||= Tamago.configuration.show_type
       @informations.selected_issues(show_type)
