@@ -48,10 +48,6 @@ module Tamago
       describe '#print' do
         it_should_behave_like 'a delegating method', :print
       end
-
-      describe '#a' do
-        it_should_behave_like 'a delegating method', :a
-      end
     end
   end
 end
