@@ -12,7 +12,7 @@ module Tamago
       @informations = informations
 
       if self.class.ios.empty? && Tamago.configuration.outputter
-        self.class.add_io(Tamago.configuration.outputter)
+        self.class.add_io(Tamago::IO.default_io)
       end
     end
 

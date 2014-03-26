@@ -39,7 +39,7 @@ module Tamago
 
       it 'initializes io' do
         allow_any_instance_of(described_class).to receive(:delegate_to_ios).with(:start)
-        subject
+        expect { subject }.to raise_error(NotImplementedError)
       end
     end
 
@@ -48,7 +48,7 @@ module Tamago
 
       it 'destracts io' do
         allow_any_instance_of(described_class).to receive(:delegate_to_ios).with(:finish)
-        subject
+        expect { subject }.to raise_error(NotImplementedError)
       end
     end
 

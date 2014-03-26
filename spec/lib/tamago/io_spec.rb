@@ -10,15 +10,18 @@ module Tamago
     end
 
     describe 'ClassMethods' do
-      describe '.build' do
-        subject { described_class.build }
+      describe '.default_io' do
+        subject { described_class.default_io }
 
         before do
           expect(Tamago.configuration).to receive(:outputter).and_return(outputter)
         end
 
         let(:outputter) { :file }
-        it { should eql IO::File }
+
+        it 'builds default io' do
+          should eql IO::File
+        end
       end
 
       let(:io_instance) { stub_io.new }

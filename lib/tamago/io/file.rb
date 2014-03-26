@@ -16,7 +16,17 @@ module Tamago
         @file.close
       end
 
-      def_delegators :@file, *Tamago::IOrable::PRINT_METHODS
+      def self.puts(*args)
+        @file.puts(*args)
+      end
+
+      def self.p(*args)
+        @file.p(*args)
+      end
+
+      def self.print(*args)
+        @file.print(*args)
+      end
     end
   end
 end

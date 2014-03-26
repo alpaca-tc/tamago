@@ -18,7 +18,7 @@ module Tamago
       end
     end
 
-    def self.build
+    def self.default_io
       outputter = Tamago.configuration.outputter
       outputter = outputter.to_s.camelcase
       const_get(outputter)

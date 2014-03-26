@@ -33,6 +33,7 @@ module Tamago
     PRINT_METHODS.each do |method|
       define_method method do |*args|
         delegate_to_ios(method, *args)
+        nil
       end
     end
 
