@@ -7,8 +7,21 @@ module Tamago
 
       def self.finish
         Tamago::IO::File.finish
-        path = Tamago::IO::File.file.path
-        `less -R #{path}`
+        file = Tamago::IO::File.file
+        system("less -R #{file.path}")
+        ::File.delete(file.path)
+      end
+
+      def self.puts(*args)
+        Tamago::IO::File.puts(*args)
+      end
+
+      def self.print(*args)
+        Tamago::IO::File.print(*args)
+      end
+
+      def self.p(*args)
+        Tamago::IO::File.p(*args)
       end
     end
   end
