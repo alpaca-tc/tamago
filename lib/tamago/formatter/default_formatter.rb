@@ -22,6 +22,8 @@ module Tamago
       issue: "    #{RESET}#{WHITE}line #LINE - #{BOLD}#{WHITE}#TITLE#{RESET}",
     }
 
+    private
+
     def start
       message = []
       selected_issues.each do |_, issues_object|
@@ -31,7 +33,8 @@ module Tamago
       puts message.flatten
     end
 
-    private
+    def finish
+    end
 
     def build_message(issues_object)
       issues = issues_object[:issues]

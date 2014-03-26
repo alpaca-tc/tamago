@@ -3,13 +3,16 @@ require 'tamago/formatter'
 
 module Tamago
   class Formatter::UniteFormatter < Formatter
+    private
+
     def start
       @candidates = []
       selected_issues.each { |_, info| build_candidate(info) }
       File.dump_result @candidates.to_json
     end
 
-    private
+    def finish
+    end
 
     def build_candidate(info)
       candidate = {

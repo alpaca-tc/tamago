@@ -5,6 +5,7 @@ module Tamago
 
       def self.start
       end
+
       def self.finish
       end
 
