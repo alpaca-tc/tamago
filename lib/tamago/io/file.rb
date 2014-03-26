@@ -13,6 +13,8 @@ module Tamago
       end
 
       def self.start
+        # Initialize file
+        file
       end
 
       def self.finish
