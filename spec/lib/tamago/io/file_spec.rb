@@ -7,6 +7,12 @@ module Tamago::IO
     let(:instance) { File.new(temp_path) }
     let(:temp_path) { Tempfile.new('tempfile').tap { |v| v.close }.path }
 
+    before do
+      if described_class.instance_variable_defined?(:@file)
+        described_class.remove_instance_variable(:@file)
+      end
+    end
+
     describe 'ClassMethods' do
       describe '.start' do
         subject { described_class }

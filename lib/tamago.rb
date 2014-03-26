@@ -10,6 +10,7 @@ require 'tamago/issues'
 require 'tamago/option_parser'
 require 'tamago/parser'
 
+# [todo] - Issue管理を分離して、Guard-tamagoの形にする
 module Tamago
   autoload :File, 'tamago/file'
 
