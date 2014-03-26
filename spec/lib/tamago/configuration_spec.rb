@@ -31,7 +31,7 @@ module Tamago
           expect(subject.ignore_patterns).to   eq %w[.git *.swp tmp]
           expect(subject.in_threads).to        eq 5
           expect(subject.output_file).to       eq '.tamagoresults'
-          expect(subject.outputter).to         eq :file
+          expect(subject.outputter).to         eq :stdout
           expect(subject.show_type).to         eq :all
         end
       end

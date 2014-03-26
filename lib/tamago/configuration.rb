@@ -12,7 +12,7 @@ module Tamago
       @ignore_patterns   = %w[.git *.swp tmp]
       @in_threads        = 5
       @output_file       = '.tamagoresults'
-      @outputter         = :file
+      @outputter         = :stdout
       @show_type         = :all
 
       attributes.each do |key, value|

@@ -1,6 +1,7 @@
 module Tamago
   module IO
     autoload :File, 'tamago/io/file'
+    autoload :Stdout, 'tamago/io/stdout'
 
     def self.included(klass)
       klass.class_eval do |klass|
