@@ -9,7 +9,8 @@ module Tamago
       before do
         expect(FileListBuilder).to receive(:get_file_list).once.and_return([])
         allow_any_instance_of(Parser).to receive(:parse).with([]).and_return([])
-        allow_any_instance_of(Formatter::DefaultFormatter).to receive(:start)
+        allow_any_instance_of(Formatter::DefaultFormatter).to receive(:start_formatter!)
+        allow_any_instance_of(Formatter::DefaultFormatter).to receive(:finish_formatter!)
         expect(Tamago.configuration).to receive(:formatter).once.and_return(formatter)
         allow_any_instance_of(Parser).to receive(:parse).with([]).and_return([])
       end

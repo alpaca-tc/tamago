@@ -1,5 +1,7 @@
 module Tamago
   module IOrable
+    PRINT_METHODS = %i[puts print p].freeze
+
     def self.included(klass)
       super
 
@@ -28,10 +30,14 @@ module Tamago
 
     private
 
-    %i[puts print p].each do |method|
+    PRINT_METHODS.each do |method|
       define_method method do |*args|
-        ios.each { |io| io.send(method, *args) }
+        delegate_to_ios(method, *args)
       end
+    end
+
+    def delegate_to_ios(method, *args)
+      ios.each { |io| io.send(method, *args) }
     end
   end
 end

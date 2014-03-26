@@ -7,7 +7,8 @@ module Tamago
       file_list = FileListBuilder.get_file_list
       issues = Parser.new.parse(file_list)
       formatter = Tamago.configuration.formatter.new(issues)
-      formatter.start
+      formatter.start_formatter!
+      formatter.finish_formatter!
     end
   end
 end

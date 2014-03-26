@@ -6,14 +6,9 @@ module Tamago
     let(:formatter) { described_class.new(informations) }
     let(:informations) { Informations.new }
 
-    describe '#start' do
-      subject { formatter.start }
-      it { expect { subject }.to raise_error NotImplementedError }
-    end
-
-    describe '#finish' do
-      subject { formatter.finish }
-      it { expect { subject }.to raise_error NotImplementedError }
+    describe 'ClassMethods' do
+      subject { described_class }
+      it { should include IOrable }
     end
 
     describe '#selected_issues' do
@@ -37,6 +32,34 @@ module Tamago
           subject
         end
       end
+    end
+
+    describe '#start_formatter!' do
+      subject { formatter.start_formatter! }
+
+      it 'initializes io' do
+        allow_any_instance_of(described_class).to receive(:delegate_to_ios).with(:start)
+        subject
+      end
+    end
+
+    describe '#finish_formatter!' do
+      subject { formatter.finish_formatter! }
+
+      it 'destracts io' do
+        allow_any_instance_of(described_class).to receive(:delegate_to_ios).with(:finish)
+        subject
+      end
+    end
+
+    describe '#start' do
+      subject { formatter.send(:start) }
+      it { expect { subject }.to raise_error NotImplementedError }
+    end
+
+    describe '#finish' do
+      subject { formatter.send(:finish) }
+      it { expect { subject }.to raise_error NotImplementedError }
     end
   end
 end
